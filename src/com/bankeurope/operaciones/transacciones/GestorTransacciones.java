@@ -4,8 +4,8 @@
  */
 
 /**
+ * 
  * @author felix
- * @author pau rojas
  */
 
 package com.bankeurope.operaciones.transacciones;
