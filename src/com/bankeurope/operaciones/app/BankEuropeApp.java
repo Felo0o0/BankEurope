@@ -3,11 +3,6 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 
-/**
- * 
- * @author felix
- */
-
 package com.bankeurope.operaciones.app;
 
 import com.bankeurope.modelo.InfoCliente;
@@ -21,12 +16,24 @@ import java.util.Scanner;
 
 /**
  * Clase principal que contiene el menu y la logica de la aplicacion
+ * Gestiona la interaccion con el usuario y las operaciones bancarias
+ * 
+ * @author Bank Europe Development Team
+ * @version 1.0
  */
 public class BankEuropeApp {
 
+    // Coleccion para almacenar las cuentas creadas
     static ArrayList<Cuenta> cuentas = new ArrayList<>();
+    // Scanner para leer entrada del usuario
     static Scanner sc = new Scanner(System.in);
 
+    /**
+     * Metodo principal que inicia la aplicacion
+     * Muestra el menu principal y gestiona las opciones seleccionadas
+     * 
+     * @param args Argumentos de linea de comandos (no utilizados)
+     */
     public static void main(String[] args) {
         int opcion = 0;
 
@@ -111,6 +118,10 @@ public class BankEuropeApp {
         sc.close();
     }
 
+    /**
+     * Registra un nuevo cliente y crea una cuenta asociada
+     * Solicita datos personales y tipo de cuenta a crear
+     */
     private static void registrarCliente() {
         System.out.println("\n--- REGISTRO DE NUEVO CLIENTE ---");
         System.out.println("Nos complace darle la bienvenida a Bank Europe");
@@ -171,6 +182,10 @@ public class BankEuropeApp {
         }
     }
 
+    /**
+     * Muestra los datos basicos del cliente asociado a una cuenta
+     * Permite seleccionar la cuenta cuyo cliente se desea consultar
+     */
     private static void verDatosCliente() {
         Cuenta cuenta = seleccionarCuenta();
         if (cuenta != null) {
@@ -179,6 +194,10 @@ public class BankEuropeApp {
         }
     }
 
+    /**
+     * Consulta el saldo de una cuenta seleccionada
+     * Muestra el saldo actual disponible
+     */
     private static void consultarSaldo() {
         Cuenta cuenta = seleccionarCuenta();
         if (cuenta != null) {
@@ -186,6 +205,10 @@ public class BankEuropeApp {
         }
     }
 
+    /**
+     * Realiza un deposito en una cuenta seleccionada
+     * Solicita el monto a depositar
+     */
     private static void depositar() {
         Cuenta cuenta = seleccionarCuenta();
         if (cuenta != null) {
@@ -201,6 +224,10 @@ public class BankEuropeApp {
         }
     }
 
+    /**
+     * Realiza un giro desde una cuenta seleccionada
+     * Solicita el monto a girar
+     */
     private static void girar() {
         Cuenta cuenta = seleccionarCuenta();
         if (cuenta != null) {
@@ -216,6 +243,10 @@ public class BankEuropeApp {
         }
     }
     
+    /**
+     * Muestra informacion detallada del cliente y su cuenta
+     * Utiliza la interfaz InfoCliente para mostrar datos especificos
+     */
     private static void verInformacionCliente() {
         Cuenta cuenta = seleccionarCuenta();
         if (cuenta != null) {
@@ -228,6 +259,10 @@ public class BankEuropeApp {
         }
     }
     
+    /**
+     * Calcula y muestra los intereses generados por una cuenta
+     * El calculo depende del tipo de cuenta seleccionada
+     */
     private static void calcularIntereses() {
         Cuenta cuenta = seleccionarCuenta();
         if (cuenta != null) {
@@ -244,6 +279,12 @@ public class BankEuropeApp {
         }
     }
 
+    /**
+     * Permite seleccionar una cuenta de la lista de cuentas registradas
+     * Muestra un menu con las cuentas disponibles
+     * 
+     * @return La cuenta seleccionada o null si no se selecciona ninguna
+     */
     private static Cuenta seleccionarCuenta() {
         if (cuentas.isEmpty()) {
             System.out.println("No hay cuentas registradas en el sistema.");
@@ -271,6 +312,13 @@ public class BankEuropeApp {
         }
     }
 
+    /**
+     * Valida el formato del RUT chileno
+     * Verifica que el RUT tenga el formato XX.XXX.XXX-X
+     * 
+     * @param rut RUT a validar
+     * @return true si el formato es valido, false en caso contrario
+     */
     private static boolean validarRut(String rut) {
         return rut.matches("\\d{1,2}\\.\\d{3}\\.\\d{3}-[\\dkK]");
     }
